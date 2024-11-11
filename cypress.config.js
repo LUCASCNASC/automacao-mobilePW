@@ -14,7 +14,7 @@ module.exports = defineConfig({
     screenshotsFolder: 'cypress/screenshots', // Diretório onde as screenshots serão salvas
     video: true, //Gravar vídeo do teste
     videosFolder: 'cypress/videos', // Diretório onde os vídeos serão salvos
-    //viewportWidth: 375,
-    //viewportHeight: 667
+    viewportWidth: 375,
+    viewportHeight: 667
   },
 });
