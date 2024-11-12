@@ -1,9 +1,10 @@
 import { titulopagina } from '../../../support/para_todos';
-import { escolherClientePedido, saldodisponivel, escolherProdutoPesquisa, escolherVoltagemProduto, 
-         clicarAdicionarProduto, modalServicosVinculados, okServicosVinculados, tirarMontagem, tirarEntrega, semSaldodisponivel, 
-         avancarParaTransportadora, modalInconsRotaTransp, escolherTransportadora, escolherRota, avancarParcelasEntrega, botaoGerarParcelas, 
-         carregandoFormaPagamento, avancarFinal, trocarFilialFaturamento, botaoFinalizarPedido, finalizandoPedido, pedidoGerado, avancarParaParcelas, 
-         escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento } from '../../../support/para_pedidos/gerais_pedidos';
+import { clicarBotaoTresPontos, clicarExpandirClienteProcesso, clicarInformeCliente, escolherClientePedido, 
+         saldodisponivel, escolherProdutoPesquisa, escolherVoltagemProduto, botãoAdicionarProduto, modalServicosVinculados, okServicosVinculados,
+         tirarEntrega, avancarParaParcelas, botaoGerarParcelas, carregandoFormaPagamento, avancarFinal, aguardeCarregandoParaFinal, 
+         escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento, botaoFinalizarPedido, finalizandoPedido, pedidoGerado, 
+         tirarEntregaSegundo, escolherRota, escolherTransportadora, avancarParaTransportadora, avancarParcelasEntrega, 
+         processoEntregaFutura, modalInconsRotaTransp, clicarAdicionarProduto, semSaldodisponivel, trocarFilialFaturamento} from '../../../support/para_pedidos/para_pedidos.js';
 import { primeiroPrdNormalExclusiva, kitSemSaldoAgendamento, kitVolumes, produtoSaldoReceber, prdSaldoReceberDuasLinhas, aumentarQuantVendaCinco, 
          saldoRemotoAReceber, aumentarQuantVendaDez, processoVendaExclusiva } from '../../../support/para_pedidos/para_pedidos_exclusiva';
 
@@ -15,17 +16,17 @@ describe('Pedidos Exclusiva - Parâmetro de empresa 1019 marcado', () => {
         cy.clearAllSessionStorage();
         cy.login();
         titulopagina()
+        clicarBotaoTresPontos()
+        clicarExpandirClienteProcesso()
+        processoVendaExclusiva()
+        clicarInformeCliente()
+        escolherClientePedido()
+        cy.wait(2000)
     })
 
     context('Configuração de processo - Exclusiva: 36 = 2; 139 = 6; 552= 5 dias', () => {
 
         it.skip('Vender um produto normal (com saldo e com entrega, 15 dias) e um kit remoto (2 composições, sem saldo e sem a receber, 20 dias).', () => {
-            
-            processoVendaExclusiva()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
 
             primeiroPrdNormalExclusiva()
 
@@ -75,7 +76,7 @@ describe('Pedidos Exclusiva - Parâmetro de empresa 1019 marcado', () => {
     
             // tela para ESCOLHER TRANSPORTADORA
 
-            cy.wait(12000)
+            cy.wait(13000)
 
             modalInconsRotaTransp()
     
@@ -107,12 +108,6 @@ describe('Pedidos Exclusiva - Parâmetro de empresa 1019 marcado', () => {
         })
 
         it.skip('Vender um produto normal (com saldo e com entrega) e um kit com composição 6 volumes (data atual + parametro 552/ 5 dias).', () => {
-            
-            processoVendaExclusiva()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
 
             primeiroPrdNormalExclusiva()
 
@@ -195,12 +190,6 @@ describe('Pedidos Exclusiva - Parâmetro de empresa 1019 marcado', () => {
     context('Configuração de processo - Exclusiva: 36 = 2; 139 = 6; 552= 5 dias', () => {
 
         it.skip('Vender um produto (sem saldo e com saldo a receber para 10 dias, e com entrega), e ter um agendamento para a data de previsão.', () => {
-            
-            processoVendaExclusiva()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
 
             produtoSaldoReceber()
 
@@ -260,13 +249,7 @@ describe('Pedidos Exclusiva - Parâmetro de empresa 1019 marcado', () => {
         })
 
         //necessário esperar tarefa PVW-220
-        it.skip('Vender um produto em duas linhas (um com 5 unidades a receber e 10 para solicitar compra), e ter um agendamento para a data de previsão para a receber.', () => {
-            
-            processoVendaExclusiva()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
+        it('Vender um produto em duas linhas (um com 5 unidades a receber e 10 para solicitar compra), e ter um agendamento para a data de previsão para a receber.', () => {
 
             prdSaldoReceberDuasLinhas()
 
@@ -305,13 +288,8 @@ describe('Pedidos Exclusiva - Parâmetro de empresa 1019 marcado', () => {
             
         })
 
-        it.skip('Pedido de venda normal: produto 1896 0 0 (sem entrega)', () => {
-            
-            processoVendaExclusiva()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
+        //esperando Alex corrigir a exclusiva
+        it.only('Pedido de venda normal: produto 1896 0 0 (sem entrega)', () => {
     
             primeiroPrdNormalExclusiva()
     
@@ -361,11 +339,11 @@ describe('Pedidos Exclusiva - Parâmetro de empresa 1019 marcado', () => {
         })
     })
 
-    afterEach(() => {
-        // RESUMO DO PEDIDO - ANTES DE FINALIZAR
-        botaoFinalizarPedido()
-        finalizandoPedido()
-        cy.wait(8000)
-        pedidoGerado()
-      });
+    // afterEach(() => {
+    //     // RESUMO DO PEDIDO - ANTES DE FINALIZAR
+    //     botaoFinalizarPedido()
+    //     finalizandoPedido()
+    //     cy.wait(8000)
+    //     pedidoGerado()
+    //   });
 })

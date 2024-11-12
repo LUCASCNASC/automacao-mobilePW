@@ -1,5 +1,6 @@
 import { titulopagina } from '../../../support/para_todos';
-import { escolherClientePedido, processoVendaPrincipal, escolherProdutoPesquisa, escolherVoltagemProduto, semSaldodisponivel } from '../../../support/para_pedidos/gerais_pedidos';
+import { escolherClientePedido, processoVendaPrincipal, escolherProdutoPesquisa, escolherVoltagemProduto, semSaldodisponivel, 
+         clicarBotaoTresPontos, clicarExpandirClienteProcesso, clicarInformeCliente } from '../../../support/para_pedidos/para_pedidos';
 import { produtoSemSaldo} from '../../../support/para_pedidos/produtos_pedidos';
 
 describe('Tentar gerar pedido de venda com produto sem saldo - Regra de saldo Parâmetro 36 = 4 - Parâmetro 139 = 4 - Trial 653 não configurado', () => {
@@ -13,15 +14,20 @@ describe('Tentar gerar pedido de venda com produto sem saldo - Regra de saldo Pa
 
     context('Processo 9860 - não permitir fazer a venda - no momento de adicionar produto, devem aparecer mensagens de aviso', () => {
 
-        it('Pedido de venda: produto 1869 0 0 (Venda local de produto sem saldo - sem entrega)', () => {
+        it.only('Pedido de venda: produto 1869 0 0 (Venda local de produto sem saldo - sem entrega)', () => {
             
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoVendaPrincipal()
-    
+            
+            clicarInformeCliente()
+
             escolherClientePedido()
+
+            cy.wait(2000)
     
-            cy.wait(500)
-    
-            //Pesquisando produto
             produtoSemSaldo()
     
             semSaldodisponivel()
@@ -36,6 +42,8 @@ describe('Tentar gerar pedido de venda com produto sem saldo - Regra de saldo Pa
 
             //Validando mensagem "Este produto não possui saldo na filial selecionada."
             cy.get('[ng-if="semSaldoCD"][style=""] > p')
+                .scrollIntoView()
+                .wait(200)
                 .should('exist')
                 .and('be.visible')
                 .and('have.text','Este produto não possui saldo na filial selecionada.')

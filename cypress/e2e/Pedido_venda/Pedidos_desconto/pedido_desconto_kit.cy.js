@@ -1,8 +1,9 @@
 import { titulopagina } from '../../../support/para_todos';
-import { escolherTransportadora, saldodisponivel, escolherRota, escolherClientePedido, pedidoGerado, botaoFinalizarPedido, processoVendaPrincipal,
-         avancarParaParcelas, avancarParaTransportadora, avancarParcelasEntrega, finalizandoPedido, modalServicosVinculados, okServicosVinculados,
-         escolherProdutoPesquisa, escolherVoltagemProduto, avancarFinal, clicarAdicionarProduto, botaoGerarParcelas, modalInconsRotaTransp,
-         carregandoFormaPagamento, tirarEntrega, tirarMontagem, escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento } from '../../../support/para_pedidos/gerais_pedidos.js';
+import { clicarBotaoTresPontos, clicarExpandirClienteProcesso, escolherClientePedido, processoVendaPrincipal, clicarInformeCliente,
+         okServicosVinculados, saldodisponivel, escolherProdutoPesquisa, escolherVoltagemProduto, modalServicosVinculados, 
+         clicarAdicionarProduto, tirarEntrega, avancarParaParcelas, botaoGerarParcelas, carregandoFormaPagamento, 
+         escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento, avancarFinal, botaoFinalizarPedido, finalizandoPedido, 
+         pedidoGerado } from '../../../support/para_pedidos/para_pedidos';
 import { produtoKitPrimeiro} from '../../../support/para_pedidos/produtos_pedidos';
 import { clicarBotaoDesconto, validarModalSubSobre, aplicarDescontoR$, aplicarDescontoPorcentagem, aplicarDescontoValorFixo } from '../../../support/para_pedidos/para_pedido_desconto';
 
@@ -17,13 +18,19 @@ describe('Gerar pedido de venda Kit com desconto', () => {
   
     context('Sem frete/ processo 9862 - caminho feliz', () => {
         
-        it('Pedido de venda: kit 1862 0 0 com desconto Sub (-) / VALOR FIXO', () => {clicarAdicionarProduto
+        it('Pedido de venda: kit 1862 0 0 com desconto Sub (-) / VALOR FIXO', () => {
     
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoVendaPrincipal()
-    
+            
+            clicarInformeCliente()
+
             escolherClientePedido()
-    
-            cy.wait(500)
+
+            cy.wait(2000)
     
             produtoKitPrimeiro()
     
@@ -52,8 +59,6 @@ describe('Gerar pedido de venda Kit com desconto', () => {
             aplicarDescontoValorFixo()
     
             tirarEntrega()
-
-            tirarMontagem()
     
             cy.wait(400)
     

@@ -1,9 +1,9 @@
 import { titulopagina } from '../../../support/para_todos';
-import { escolherTransportadora, saldodisponivel, escolherRota, escolherClientePedido,  pedidoGerado, botaoFinalizarPedido, bfinalizandoPedido,
-         clicarAdicionarProduto, botaoGerarParcelas, processoVendaPrincipal, avancarParcelasEntrega, modalServicosVinculados, okServicosVinculados,
-         escolherProdutoPesquisa, escolherVoltagemProduto, avancarFinal, trocarFilialFaturamento, avancarParaTransportadora, modalInconsApenasRota,
-         carregandoFormaPagamento, escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento } from '../../../support/para_pedidos/gerais_pedidos';
-import { produtoNormalPrimeiro, produtoNormalSegundo } from '../../../support/para_pedidos/produtos_pedidos';
+import { clicarBotaoTresPontos, clicarExpandirClienteProcesso, processoVendaPrincipal, clicarInformeCliente, escolherClientePedido,
+         botaoGerarParcelas, carregandoFormaPagamento, avancarFinal, escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento,
+         botaoFinalizarPedido, finalizandoPedido, pedidoGerado, escolherRota, escolherTransportadora, avancarParaTransportadora,
+         avancarParcelasEntrega, trocarFilialFaturamento, clicarAdicionarProduto, modalInconsApenasRota} from '../../../support/para_pedidos/para_pedidos.js';
+import { produtoNormalPrimeiro, produtoNormalSegundo } from '../../../support/para_pedidos/produtos_pedidos.js';
 
 describe('Remoto/processo 9860 - caminho feliz', () => {
 
@@ -16,11 +16,17 @@ describe('Remoto/processo 9860 - caminho feliz', () => {
   
     it.skip('Pedido de venda remota: produto 1860 0 0', () => {
 
+        clicarBotaoTresPontos()
+
+        clicarExpandirClienteProcesso()
+
         processoVendaPrincipal()
+            
+        clicarInformeCliente()
 
         escolherClientePedido()
 
-        cy.wait(500)
+        cy.wait(2000)
 
         produtoNormalPrimeiro()
 
@@ -52,7 +58,7 @@ describe('Remoto/processo 9860 - caminho feliz', () => {
 
         // tela para ESCOLHER TRANSPORTADORA
 
-        cy.wait(13000)
+        cy.wait(12000)
 
         modalInconsApenasRota()
 

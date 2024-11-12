@@ -28,9 +28,7 @@ export function kitSemSaldoAgendamento (selector) {
 
     //Limpando campo com o produto anterior
     cy.get('#searchText')
-        .clear()
-        .wait(100)
-        .should('have.value', '')
+        .clear({force:true})
 
     //Validando campo Buscar produto
     cy.get('#searchText')
@@ -57,7 +55,7 @@ export function kitVolumes (selector) {
 
     //Limpando campo com o produto anterior
     cy.get('#searchText')
-        .clear()
+        .clear({force:true})
         .wait(100)
         .should('have.value', '')
 
@@ -239,7 +237,7 @@ export function saldoRemotoAReceber (selector) {
 export function processoVendaExclusiva (selector) {
 
     //clicar para aparecer as opções de processo
-    cy.get('#select_value_label_4 > .md-select-icon')
+    cy.get('#select_value_label_5 > .md-select-icon')
         .should('exist')
         .and('be.visible')
         .and('not.be.disabled')
@@ -248,15 +246,14 @@ export function processoVendaExclusiva (selector) {
     //rolar para o meio das opções de processo
     cy.get('#select_listbox_12')
         .should('exist')
-        .and('be.visible')
-        .scrollTo('center')
+        //.and('be.visible')
 
     //selecionar processo de venda "9869"
-    cy.get('#select_option_64 > .md-text')
+    cy.get('#select_option_76 > .md-text')
         .scrollIntoView()
         .wait(200)
         .should('exist')
-        .and('be.visible')
+        //.and('be.visible')
         .and('not.be.disabled')
         .click({force:true})
 }

@@ -28,7 +28,7 @@ export function produtoNormalSegundo (selector) {
 
     //Limpando campo com o produto anterior
     cy.get('#searchText')
-        .clear()
+        .clear({force:true})
         .wait(100)
         .should('have.value', '')
 

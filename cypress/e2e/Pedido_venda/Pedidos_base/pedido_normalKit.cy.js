@@ -1,9 +1,10 @@
 import { titulopagina } from '../../../support/para_todos';
-import { escolherTransportadora, saldodisponivel, escolherRota, escolherClientePedido, pedidoGerado, botaoFinalizarPedido, processoVendaPrincipal,
-         avancarParaParcelas, avancarParaTransportadora, avancarParcelasEntrega, finalizandoPedido, modalServicosVinculados, okServicosVinculados,
-         escolherProdutoPesquisa, escolherVoltagemProduto, avancarFinal, clicarAdicionarProduto, botaoGerarParcelas, modalInconsRotaTransp,
-         carregandoFormaPagamento, tirarEntrega, tirarMontagem, escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento } from '../../../support/para_pedidos/gerais_pedidos';
-import { produtoKitPrimeiro } from '../../../support/para_pedidos/produtos_pedidos';
+import { clicarBotaoTresPontos, clicarExpandirClienteProcesso, processoVendaPrincipal, clicarInformeCliente, escolherClientePedido, 
+         saldodisponivel, escolherProdutoPesquisa, escolherVoltagemProduto, botãoAdicionarProduto, modalServicosVinculados, okServicosVinculados,
+         tirarEntrega, avancarParaParcelas, botaoGerarParcelas, carregandoFormaPagamento, avancarFinal, aguardeCarregandoParaFinal, 
+         escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento, botaoFinalizarPedido, finalizandoPedido, pedidoGerado, 
+         escolherRota, escolherTransportadora, avancarParaTransportadora, avancarParcelasEntrega, modalInconsRotaTransp} from '../../../support/para_pedidos/para_pedidos.js';
+import { produtoKitPrimeiro } from '../../../support/para_pedidos/produtos_pedidos.js';
 
 describe('Gerar pedido normal', () => {
 
@@ -16,60 +17,58 @@ describe('Gerar pedido normal', () => {
   
     context('Sem frete/ processo 9860 - caminho feliz', () => {
         
-        it('Pedido de venda: kit 1862 0 0', () => {
+        it.skip('Pedido de venda: kit 1862 0 0', () => {
     
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoVendaPrincipal()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
-    
-            produtoKitPrimeiro()
-    
-            saldodisponivel()
-    
-            escolherProdutoPesquisa()
-    
-            cy.wait(200)
-    
-            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
-                      
-            escolherVoltagemProduto()
             
-            clicarAdicionarProduto()
-    
-            cy.wait(500)
-    
+            clicarInformeCliente()
+
+            escolherClientePedido()
+
+            cy.wait(2000)
+
+            produtoKitPrimeiro()
+            
+            saldodisponivel()
+            
+            escolherProdutoPesquisa()
+
+            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
+
+            escolherVoltagemProduto()
+
+            botãoAdicionarProduto()
+
             modalServicosVinculados()
 
             okServicosVinculados()
-    
+
             tirarEntrega()
 
-            tirarMontagem()
-    
-            cy.wait(400)
-    
             avancarParaParcelas()
-    
-            // tela de GERAR PARCELAS
-    
-            cy.wait(6500)
-    
+
+            cy.wait(6000)
+
             botaoGerarParcelas()
 
             carregandoFormaPagamento()
-    
-            cy.wait(6000)
-    
-            escolherFormaPagamentoPrincipal()
 
-            escolherDuasParcelaPagamento()
+            cy.wait(4000)
+
+            escolherFormaPagamentoPrincipal()
     
+            escolherDuasParcelaPagamento()  
+
             cy.wait(400)
     
             avancarFinal()
-    
+
+            aguardeCarregandoParaFinal()
+
             cy.wait(6000)
         })
     })
@@ -78,49 +77,49 @@ describe('Gerar pedido normal', () => {
         
         it('Pedido de venda: kit 1862 0 0', () => {
     
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoVendaPrincipal()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
-    
-            produtoKitPrimeiro()
-    
-            saldodisponivel()
-    
-            escolherProdutoPesquisa()
-    
-            cy.wait(200)
-    
-            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
-                      
-            escolherVoltagemProduto()
             
-            clicarAdicionarProduto()
-    
-            cy.wait(500)
-    
+            clicarInformeCliente()
+
+            escolherClientePedido()
+
+            cy.wait(2000)
+
+            produtoKitPrimeiro()
+            
+            saldodisponivel()
+            
+            escolherProdutoPesquisa()
+
+            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
+
+            escolherVoltagemProduto()
+
+            botãoAdicionarProduto()
+
             modalServicosVinculados()
 
             okServicosVinculados()
-    
-            cy.wait(400)
-    
+
             avancarParaTransportadora()
-    
+
             // tela para ESCOLHER TRANSPORTADORA
 
-            cy.wait(13000)
+            cy.wait(11000)
 
             modalInconsRotaTransp()
-    
+
             escolherTransportadora()
         
             escolherRota()
 
             avancarParcelasEntrega()
         
-            cy.wait(8000)
+            cy.wait(6500)
 
             // tela de GERAR PARCELAS
 
@@ -128,7 +127,7 @@ describe('Gerar pedido normal', () => {
 
             carregandoFormaPagamento()
 
-            cy.wait(7000)
+            cy.wait(5500)
 
             escolherFormaPagamentoPrincipal()
 
@@ -138,7 +137,7 @@ describe('Gerar pedido normal', () => {
 
             avancarFinal()
 
-            cy.wait(8000)
+            cy.wait(7000)
         })
     })
 

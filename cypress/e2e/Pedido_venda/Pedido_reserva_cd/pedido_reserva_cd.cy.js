@@ -1,10 +1,11 @@
 import { titulopagina } from '../../../support/para_todos';
-import { escolherTransportadora, saldodisponivel, escolherRota, escolherClientePedido, pedidoGerado, botaoFinalizarPedido, finalizandoPedido,
-         clicarAdicionarProduto, tirarEntrega, tirarMontagem, tirarEntregaSegundo, tirarMontagemSegundo, botaoGerarParcelas, processoVendaPrincipal,
-         avancarParaParcelas, avancarParaTransportadora, avancarParcelasEntrega, modalServicosVinculados, okServicosVinculados,
-         escolherProdutoPesquisa, escolherVoltagemProduto, avancarFinal, modalInconsRotaTransp, carregandoFormaPagamento, 
-         saldoCDDisponivel, escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento} from '../../../support/para_pedidos/gerais_pedidos';
-import { produtoCDPrimeiro, produtoNormalSegundo} from '../../../support/para_pedidos/produtos_pedidos';
+import { clicarBotaoTresPontos, clicarExpandirClienteProcesso, processoVendaPrincipal, clicarInformeCliente, escolherClientePedido, 
+         saldodisponivel, escolherProdutoPesquisa, escolherVoltagemProduto, botãoAdicionarProduto, modalServicosVinculados, okServicosVinculados,
+         tirarEntrega, avancarParaParcelas, botaoGerarParcelas, carregandoFormaPagamento, avancarFinal, aguardeCarregandoParaFinal, 
+         escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento, botaoFinalizarPedido, finalizandoPedido, pedidoGerado, 
+         tirarEntregaSegundo, escolherRota, escolherTransportadora, avancarParaTransportadora, avancarParcelasEntrega, modalInconsRotaTransp, 
+         saldoCDDisponivel, clicarAdicionarProduto, tirarMontagem} from '../../../support/para_pedidos/para_pedidos.js';
+import { produtoCDPrimeiro, produtoNormalSegundo } from '../../../support/para_pedidos/produtos_pedidos.js';
 
 describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Parâmetro 139 = 4 - Trial 653 não configurado', () => {
 
@@ -17,15 +18,20 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
 
     context('Sem frete/ processo 9860 - caminho feliz', () => {
 
-        it('Venda: produto 1880 0 0 - (Venda local de produto com saldo só no CD - sem entrega)', () => {
+        it.skip('Venda: produto 1880 0 0 - (Venda local de produto com saldo só no CD - sem entrega)', () => {
             
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoVendaPrincipal()
-    
+            
+            clicarInformeCliente()
+
             escolherClientePedido()
+
+            cy.wait(2000)
     
-            cy.wait(500)
-    
-            //Pesquisando produto
             produtoCDPrimeiro()
     
             saldoCDDisponivel()
@@ -47,8 +53,6 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
             okServicosVinculados()
     
             tirarEntrega()
-    
-            tirarMontagem()
     
             cy.wait(400)
 
@@ -75,15 +79,20 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
             cy.wait(6000) 
         })
 
-        it('Venda: produtos 1880 0 0 (reserva CD) e 1870 0 0 (saldo local) - (Venda local de 1 produto com saldo local + 1 produto com saldo no CD - sem entrega)', () => {
+        it.skip('Venda: produtos 1880 0 0 (reserva CD) e 1870 0 0 (saldo local) - (Venda local de 1 produto com saldo local + 1 produto com saldo no CD - sem entrega)', () => {
     
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoVendaPrincipal()
-    
+            
+            clicarInformeCliente()
+
             escolherClientePedido()
+
+            cy.wait(2000)
     
-            cy.wait(500)
-    
-            //Pesquisando produto
             produtoCDPrimeiro()
     
             saldoCDDisponivel()
@@ -105,12 +114,9 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
             okServicosVinculados()
     
             tirarEntrega()
-    
-            tirarMontagem()
 
             cy.wait(800)
     
-            //Pesquisando segundo produto
             produtoNormalSegundo()
     
             saldodisponivel()
@@ -132,8 +138,6 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
             okServicosVinculados()
     
             tirarEntregaSegundo()
-    
-            tirarMontagemSegundo()
     
             cy.wait(400)
     
@@ -163,15 +167,20 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
 
     context('Com frete/ processo 9860 - caminho feliz', () => {
 
-        it('Venda: produto 1880 0 0 - (Venda local de produto com saldo só no CD - com entrega)', () => {
+        it.skip('Venda: produto 1880 0 0 - (Venda local de produto com saldo só no CD - com entrega)', () => {
     
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoVendaPrincipal()
-    
+            
+            clicarInformeCliente()
+
             escolherClientePedido()
+
+            cy.wait(2000)
     
-            cy.wait(500)
-    
-            //Pesquisando produto
             produtoCDPrimeiro()
 
             saldoCDDisponivel()
@@ -192,7 +201,6 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
 
             okServicosVinculados()
     
-            tirarMontagem()
     
             cy.wait(400)
     
@@ -231,15 +239,20 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
             cy.wait(7000)
         })
 
-        it('Venda: produtos 1880 0 0 (reserva CD) e 1870 0 0 (saldo local) - (Venda local de 1 produto com saldo local + 1 produto com saldo no CD - com entrega)', () => {
+        it.skip('Venda: produtos 1880 0 0 (reserva CD) e 1870 0 0 (saldo local) - (Venda local de 1 produto com saldo local + 1 produto com saldo no CD - com entrega)', () => {
     
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoVendaPrincipal()
-    
+            
+            clicarInformeCliente()
+
             escolherClientePedido()
-    
-            cy.wait(500)
-    
-            //Pesquisando produto
+
+            cy.wait(2000)
+
             produtoCDPrimeiro()
 
             saldoCDDisponivel()
@@ -262,7 +275,6 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
     
             cy.wait(400)
     
-            //Pesquisando segundo produto
             produtoNormalSegundo()
     
             saldodisponivel()

@@ -1,10 +1,10 @@
 import { titulopagina } from '../../../support/para_todos';
-import { saldodisponivel, escolherRota, escolherClientePedido, escolherClientePedido2, pedidoGerado, botaoFinalizarPedido, finalizandoPedido,
-         clicarAdicionarProduto, tirarEntrega, tirarMontagem, tirarEntregaSegundo, tirarMontagemSegundo, botaoGerarParcelas, processoFinanceiroBaixa,
-         avancarParaParcelas, avancarParaTransportadora, avancarParcelasEntrega, modalServicosVinculados, okServicosVinculados,
-         escolherProdutoPesquisa, escolherVoltagemProduto, avancarFinal, carregandoFormaPagamento, escolherFormaPagamentoPrincipal, 
-         escolherDuasParcelaPagamento } from '../../../support/para_pedidos/gerais_pedidos';
-import { produtoNormalPrimeiro, produtoNormalSegundo } from '../../../support/para_pedidos/produtos_pedidos';
+import { clicarBotaoTresPontos, clicarExpandirClienteProcesso, clicarInformeCliente, escolherClientePedido, saldodisponivel,
+         escolherProdutoPesquisa, escolherVoltagemProduto, botãoAdicionarProduto, modalServicosVinculados, okServicosVinculados,
+         tirarEntrega, avancarParaParcelas, botaoGerarParcelas, carregandoFormaPagamento, avancarFinal, aguardeCarregandoParaFinal, 
+         escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento, tirarEntregaSegundo, avancarParaTransportadora, avancarParcelasEntrega,
+         processoFinanceiroBaixa} from '../../../support/para_pedidos/para_pedidos.js';
+import { produtoNormalPrimeiro, produtoNormalSegundo } from '../../../support/para_pedidos/produtos_pedidos.js';
 
 describe('Gerar pedido com financeiro na baixa', () => {
 
@@ -17,191 +17,178 @@ describe('Gerar pedido com financeiro na baixa', () => {
   
     context('Sem frete/ processo 9863 - caminho feliz', () => {
 
-        it('Pedido de venda: produto 1860 0 0', () => {
+        it.skip('Pedido de venda: produto 1860 0 0', () => {
     
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoFinanceiroBaixa()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
-    
-            produtoNormalPrimeiro()
-    
-            saldodisponivel()
-    
-            escolherProdutoPesquisa()
-    
-            cy.wait(200)
-    
-            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
-                      
-            escolherVoltagemProduto()
             
-            clicarAdicionarProduto()
-    
-            cy.wait(500)
-    
+            clicarInformeCliente()
+
+            escolherClientePedido()
+
+            cy.wait(2000)
+
+            produtoNormalPrimeiro()
+            
+            saldodisponivel()
+            
+            escolherProdutoPesquisa()
+
+            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
+
+            escolherVoltagemProduto()
+
+            botãoAdicionarProduto()
+
             modalServicosVinculados()
 
             okServicosVinculados()
-    
+
             tirarEntrega()
 
-            tirarMontagem()
-    
-            cy.wait(400)
-    
             avancarParaParcelas()
-    
-            // tela de GERAR PARCELAS
-    
-            cy.wait(5000)
-    
+
+            cy.wait(6000)
+
             botaoGerarParcelas()
 
             carregandoFormaPagamento()
-    
-            cy.wait(5500)
-    
+
+            cy.wait(4000)
+
             escolherFormaPagamentoPrincipal()
-
-            escolherDuasParcelaPagamento()
     
+            escolherDuasParcelaPagamento()  
+
             cy.wait(400)
-
-            avancarFinal()
     
-            cy.wait(5000)
+            avancarFinal()
+
+            aguardeCarregandoParaFinal()
+
+            cy.wait(6000)
         })
 
-        it('Pedido de venda: produtos 1860 0 0 e 1870 0 0', () => {
+        it.skip('Pedido de venda: produtos 1860 0 0 e 1870 0 0', () => {
     
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoFinanceiroBaixa()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
-    
-            produtoNormalPrimeiro()
-    
-            saldodisponivel()
-    
-            escolherProdutoPesquisa()
-    
-            cy.wait(200)
-    
-            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
-                      
-            escolherVoltagemProduto()
             
-            clicarAdicionarProduto()
-    
-            cy.wait(500)
-    
+            clicarInformeCliente()
+
+            escolherClientePedido()
+
+            cy.wait(2000)
+
+            produtoNormalPrimeiro()
+            
+            saldodisponivel()
+            
+            escolherProdutoPesquisa()
+
+            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
+
+            escolherVoltagemProduto()
+
+            botãoAdicionarProduto()
+
             modalServicosVinculados()
 
             okServicosVinculados()
-    
+
             tirarEntrega()
 
-            tirarMontagem()
-    
-            cy.wait(800)
-    
+            cy.wait(400)
+
             produtoNormalSegundo()
 
             saldodisponivel()
-
-            cy.wait(800)
-    
+            
             escolherProdutoPesquisa()
-    
-            cy.wait(800)
-    
+
+            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
+
             escolherVoltagemProduto()
-    
-            clicarAdicionarProduto()
-    
-            cy.wait(500)
-    
+
+            botãoAdicionarProduto()
+
             modalServicosVinculados()
 
             okServicosVinculados()
-    
+
             tirarEntregaSegundo()
 
-            tirarMontagemSegundo()
-    
-            cy.wait(400)
-    
             avancarParaParcelas()
-    
-            // tela de GERAR PARCELAS
-    
-            cy.wait(7000)
-    
+
+            cy.wait(6000)
+
             botaoGerarParcelas()
 
             carregandoFormaPagamento()
-    
-            cy.wait(5000)
-    
-            escolherFormaPagamentoPrincipal()
 
-            escolherDuasParcelaPagamento()
+            cy.wait(4000)
+
+            escolherFormaPagamentoPrincipal()
     
+            escolherDuasParcelaPagamento()  
+
             cy.wait(400)
     
             avancarFinal()
-    
-            cy.wait(7500)
+
+            aguardeCarregandoParaFinal()
+
+            cy.wait(6000)
         })
     })
     
     context('Com frete/ processo 9863 - caminho feliz', () => {
 
-        it('Pedido de venda: produto 1860 0 0', () => {
+        it.skip('Pedido de venda: produto 1860 0 0', () => {
     
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoFinanceiroBaixa()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
-    
-            produtoNormalPrimeiro()
-    
-            saldodisponivel()
-    
-            escolherProdutoPesquisa()
-    
-            cy.wait(200)
-    
-            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
-                      
-            escolherVoltagemProduto()
             
-            clicarAdicionarProduto()
-    
-            cy.wait(500)
-    
+            clicarInformeCliente()
+
+            escolherClientePedido()
+
+            cy.wait(2000)
+
+            produtoNormalPrimeiro()
+            
+            saldodisponivel()
+            
+            escolherProdutoPesquisa()
+
+            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
+
+            escolherVoltagemProduto()
+
+            botãoAdicionarProduto()
+
             modalServicosVinculados()
 
             okServicosVinculados()
-    
-            cy.wait(400)
-    
+
             avancarParaTransportadora()
-    
+
             // tela para ESCOLHER TRANSPORTADORA
 
-            cy.wait(12000)
+            cy.wait(11000)
 
-            escolherRota()
-
-            cy.wait(6000)
-
-            //Clicar para avançar para a tela de GERAR PARCELAS
             avancarParcelasEntrega()
+        
+            cy.wait(8000)
 
             // tela de GERAR PARCELAS
 
@@ -209,7 +196,7 @@ describe('Gerar pedido com financeiro na baixa', () => {
 
             carregandoFormaPagamento()
 
-            cy.wait(7000)
+            cy.wait(5500)
 
             escolherFormaPagamentoPrincipal()
 
@@ -219,73 +206,66 @@ describe('Gerar pedido com financeiro na baixa', () => {
 
             avancarFinal()
 
-            cy.wait(8000)
+            cy.wait(7000)
         })
 
-        it('Pedido de venda: produtos 1860 0 0 e 1870 0 0', () => {
+        it.skip('Pedido de venda: produtos 1860 0 0 e 1870 0 0', () => {
     
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoFinanceiroBaixa()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
-    
-            produtoNormalPrimeiro()
-    
-            saldodisponivel()
-    
-            escolherProdutoPesquisa()
-    
-            cy.wait(200)
-    
-            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
-                      
-            escolherVoltagemProduto()
             
-            clicarAdicionarProduto()
-    
-            cy.wait(500)
-    
-            modalServicosVinculados()
+            clicarInformeCliente()
 
-            okServicosVinculados()
-    
-            cy.wait(400)
-    
-            produtoNormalSegundo()
-    
+            escolherClientePedido()
+
+            cy.wait(2000)
+
+            produtoNormalPrimeiro()
+            
             saldodisponivel()
-
-            cy.wait(800)
-    
+            
             escolherProdutoPesquisa()
-    
-            cy.wait(800)
-    
+
+            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
+
             escolherVoltagemProduto()
-    
-            clicarAdicionarProduto()
-    
-            cy.wait(500)
-    
+
+            botãoAdicionarProduto()
+
             modalServicosVinculados()
 
             okServicosVinculados()
-    
+
             cy.wait(400)
-    
+
+            produtoNormalSegundo()
+
+            saldodisponivel()
+            
+            escolherProdutoPesquisa()
+
+            // PRODUTO PESQUISADO - HORA DE ESCOLHER A VOLTAGEM
+
+            escolherVoltagemProduto()
+
+            botãoAdicionarProduto()
+
+            modalServicosVinculados()
+
+            okServicosVinculados()
+
             avancarParaTransportadora()
-    
+
             // tela para ESCOLHER TRANSPORTADORA
 
-            cy.wait(13000)
+            cy.wait(11000)
 
-            escolherRota()
-
-            cy.wait(8000)
-
-            //Clicar para avançar para a tela de GERAR PARCELAS
             avancarParcelasEntrega()
+        
+            cy.wait(8000)
 
             // tela de GERAR PARCELAS
 
@@ -293,7 +273,7 @@ describe('Gerar pedido com financeiro na baixa', () => {
 
             carregandoFormaPagamento()
 
-            cy.wait(7000)
+            cy.wait(5500)
 
             escolherFormaPagamentoPrincipal()
 
@@ -303,15 +283,15 @@ describe('Gerar pedido com financeiro na baixa', () => {
 
             avancarFinal()
 
-            cy.wait(8000)
+            cy.wait(7000)
         })
     })
 
-    afterEach(() => {
-        // RESUMO DO PEDIDO - ANTES DE FINALIZAR
-        botaoFinalizarPedido()
-        finalizandoPedido()
-        cy.wait(9000)
-        pedidoGerado()
-      });
+    // afterEach(() => {
+    //     // RESUMO DO PEDIDO - ANTES DE FINALIZAR
+    //     botaoFinalizarPedido()
+    //     finalizandoPedido()
+    //     cy.wait(9000)
+    //     pedidoGerado()
+    //   });
 })

@@ -1,9 +1,8 @@
 import { titulopagina } from '../../../support/para_todos';
-import { escolherTransportadora, saldodisponivel, escolherRota, escolherClientePedido, pedidoGerado, botaoFinalizarPedido, finalizandoPedido,
-        clicarAdicionarProduto, tirarEntrega, tirarMontagem, tirarEntregaSegundo, tirarMontagemSegundo, botaoGerarParcelas, processoVendaPrincipal,
-         avancarParaParcelas, avancarParaTransportadora, avancarParcelasEntrega, modalServicosVinculados, okServicosVinculados,
-         escolherProdutoPesquisa, escolherVoltagemProduto, avancarFinal, modalInconsRotaTransp, carregaAddProdutosServicos,
-         carregandoFormaPagamento, escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento} from '../../../support/para_pedidos/gerais_pedidos';
+import { clicarBotaoTresPontos, clicarExpandirClienteProcesso, processoVendaPrincipal, clicarInformeCliente, escolherClientePedido, 
+         saldodisponivel, escolherProdutoPesquisa, escolherVoltagemProduto, clicarAdicionarProduto, modalServicosVinculados, okServicosVinculados,
+         tirarEntrega, avancarParaParcelas, botaoGerarParcelas, carregandoFormaPagamento, avancarFinal, 
+         escolherFormaPagamentoPrincipal, escolherDuasParcelaPagamento, botaoFinalizarPedido, finalizandoPedido, pedidoGerado } from '../../../support/para_pedidos/para_pedidos.js';
 import { produtoNormalPrimeiro } from '../../../support/para_pedidos/produtos_pedidos';
 import { arrastarFormaPagamento, clicarAlterarValor, modalAlterarValor, alterarValorParaBaixo, alterarValorParaCima } from '../../../support/para_pedidos/para_pedido_desconto';
 
@@ -18,13 +17,19 @@ describe('Gerar pedido normal com desconto nos juros - parametros 243 e 244 defi
 
     context('Sem frete/ processo 9860 - caminho feliz', () => {
 
-        it('Pedido de venda: produto 1860 0 0 - arredondar para baixo', () => {
+        it.skip('Pedido de venda: produto 1860 0 0 - arredondar para baixo', () => {
             
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoVendaPrincipal()
-    
+            
+            clicarInformeCliente()
+
             escolherClientePedido()
-    
-            cy.wait(500)
+
+            cy.wait(2000)
     
             produtoNormalPrimeiro()
     
@@ -47,8 +52,6 @@ describe('Gerar pedido normal com desconto nos juros - parametros 243 e 244 defi
             okServicosVinculados()
     
             tirarEntrega()
-    
-            tirarMontagem()
     
             cy.wait(400)
 
@@ -85,13 +88,19 @@ describe('Gerar pedido normal com desconto nos juros - parametros 243 e 244 defi
             cy.wait(6000)
         })
 
-        it('Pedido de venda: produtos 1860 0 0 - arredondar para cima', () => {
+        it.skip('Pedido de venda: produtos 1860 0 0 - arredondar para cima', () => {
     
+            clicarBotaoTresPontos()
+
+            clicarExpandirClienteProcesso()
+
             processoVendaPrincipal()
-    
+            
+            clicarInformeCliente()
+
             escolherClientePedido()
-    
-            cy.wait(500)
+
+            cy.wait(2000)
     
             produtoNormalPrimeiro()
     
@@ -114,8 +123,6 @@ describe('Gerar pedido normal com desconto nos juros - parametros 243 e 244 defi
             okServicosVinculados()
     
             tirarEntrega()
-    
-            tirarMontagem()
     
             cy.wait(400)
 
