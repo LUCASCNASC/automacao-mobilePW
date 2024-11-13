@@ -13,24 +13,18 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
         cy.visit('/');
         cy.clearAllSessionStorage();
         cy.login();
-        titulopagina() 
+        titulopagina()
+        clicarBotaoTresPontos()
+        clicarExpandirClienteProcesso()
+        processoVendaPrincipal() 
+        clicarInformeCliente()
+        escolherClientePedido()
+        cy.wait(2000)
     })
 
     context('Sem frete/ processo 9860 - caminho feliz', () => {
 
         it.skip('Venda: produto 1880 0 0 - (Venda local de produto com saldo só no CD - sem entrega)', () => {
-            
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
     
             produtoCDPrimeiro()
     
@@ -80,18 +74,6 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
         })
 
         it.skip('Venda: produtos 1880 0 0 (reserva CD) e 1870 0 0 (saldo local) - (Venda local de 1 produto com saldo local + 1 produto com saldo no CD - sem entrega)', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
     
             produtoCDPrimeiro()
     
@@ -169,18 +151,6 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
 
         it.skip('Venda: produto 1880 0 0 - (Venda local de produto com saldo só no CD - com entrega)', () => {
     
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
-    
             produtoCDPrimeiro()
 
             saldoCDDisponivel()
@@ -240,18 +210,6 @@ describe('Gerar pedido com reserva no CD - Regra de saldo Parâmetro 36 = 4 - Pa
         })
 
         it.skip('Venda: produtos 1880 0 0 (reserva CD) e 1870 0 0 (saldo local) - (Venda local de 1 produto com saldo local + 1 produto com saldo no CD - com entrega)', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoCDPrimeiro()
 

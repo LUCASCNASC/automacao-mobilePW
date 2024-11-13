@@ -13,23 +13,17 @@ describe('Gerar pedido normal com desconto nos juros - parametros 243 e 244 defi
         cy.clearAllSessionStorage();
         cy.login();
         titulopagina()
+        clicarBotaoTresPontos()
+        clicarExpandirClienteProcesso()
+        processoVendaPrincipal() 
+        clicarInformeCliente()
+        escolherClientePedido()
+        cy.wait(2000)
     })
 
     context('Sem frete/ processo 9860 - caminho feliz', () => {
 
         it.skip('Pedido de venda: produto 1860 0 0 - arredondar para baixo', () => {
-            
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
     
             produtoNormalPrimeiro()
     
@@ -89,18 +83,6 @@ describe('Gerar pedido normal com desconto nos juros - parametros 243 e 244 defi
         })
 
         it.skip('Pedido de venda: produtos 1860 0 0 - arredondar para cima', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
     
             produtoNormalPrimeiro()
     

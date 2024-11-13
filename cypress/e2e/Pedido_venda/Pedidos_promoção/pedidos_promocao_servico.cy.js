@@ -12,17 +12,17 @@ describe('Gerar pedidos com promoção e serviços com isenção de juros', () =
         cy.clearAllSessionStorage();
         cy.login(); 
         titulopagina()
+        clicarBotaoTresPontos()
+        clicarExpandirClienteProcesso()
+        processoVendaPrincipal() 
+        clicarInformeCliente()
+        escolherClientePedido()
+        cy.wait(2000)
     })
   
     context('Sem entrega/ com promoção/ com serviço processo 9860 - caminho feliz', () => {
 
         it('Pedido com promoção a prazo/parcelas (promoção 159): produto 1891 0 0 com garantia (isenta de juros)', () => {
-    
-            processoVendaPrincipal()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
     
             prd1PrazoParcela()
     
@@ -86,12 +86,6 @@ describe('Gerar pedidos com promoção e serviços com isenção de juros', () =
         })
     
         it('Pedido com promoção a prazo/entrada + parcelas (promoção 158): produto 1895 0 0 com garantia (isenta de juros)', () => {
-    
-            processoVendaPrincipal()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
     
             prd2PrazoParcela()
     
@@ -179,12 +173,6 @@ describe('Gerar pedidos com promoção e serviços com isenção de juros', () =
     
         it('Pedido com promoção a prazo/parcelas (promoção 161): produto 1893 0 0 com prestamista (isento de juros)', () => {
     
-            processoVendaPrincipal()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
-    
             prd3PrazoParcela()
     
             saldodisponivel()
@@ -247,12 +235,6 @@ describe('Gerar pedidos com promoção e serviços com isenção de juros', () =
         })
 
         it('Pedido com promoção a prazo/parcelas (promoção 162): produto 1894 0 0 com garantia (isenta de juros) e prestamista (com juros)', () => {
-    
-            processoVendaPrincipal()
-    
-            escolherClientePedido()
-    
-            cy.wait(500)
     
             prd4PrazoParcela()
     

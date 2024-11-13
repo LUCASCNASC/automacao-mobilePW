@@ -14,23 +14,17 @@ describe('Gerar pedido de entrega futura', () => {
         cy.clearAllSessionStorage();
         cy.login();
         titulopagina()
+        clicarBotaoTresPontos()
+        clicarExpandirClienteProcesso()
+        processoEntregaFutura() 
+        clicarInformeCliente()
+        escolherClientePedido()
+        cy.wait(2000)
     })
 
     context('Sem frete/ processo 9862 - caminho feliz', () => {
 
         it.skip('Pedido de venda: produto 1860 0 0', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoEntregaFutura()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoNormalPrimeiro()
             
@@ -74,18 +68,6 @@ describe('Gerar pedido de entrega futura', () => {
         })
         
         it.skip('Pedido de venda: produtos 1860 0 0 e 1870 0 0', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoEntregaFutura()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoNormalPrimeiro()
             
@@ -152,18 +134,6 @@ describe('Gerar pedido de entrega futura', () => {
     context('Com frete/ processo 9862 - caminho feliz', () => {
 
         it.skip('Pedido de venda: produto 1860 0 0', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoEntregaFutura()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoNormalPrimeiro()
             
@@ -217,18 +187,6 @@ describe('Gerar pedido de entrega futura', () => {
         })    
         
         it.skip('Pedido de venda: produtos 1860 0 0 e 1870 0 0', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoEntregaFutura()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoNormalPrimeiro()
             

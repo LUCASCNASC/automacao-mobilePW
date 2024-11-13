@@ -14,23 +14,17 @@ describe('Gerar pedido de venda Kit com desconto', () => {
         cy.clearAllSessionStorage();
         cy.login(); 
         titulopagina()
+        clicarBotaoTresPontos()
+        clicarExpandirClienteProcesso()
+        processoVendaPrincipal() 
+        clicarInformeCliente()
+        escolherClientePedido()
+        cy.wait(2000)
     })
   
     context('Sem frete/ processo 9862 - caminho feliz', () => {
         
         it('Pedido de venda: kit 1862 0 0 com desconto Sub (-) / VALOR FIXO', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
     
             produtoKitPrimeiro()
     

@@ -13,23 +13,17 @@ describe('Gerar pedido normal', () => {
         cy.clearAllSessionStorage();
         cy.login();
         titulopagina()
+        clicarBotaoTresPontos()
+        clicarExpandirClienteProcesso()
+        processoVendaPrincipal() 
+        clicarInformeCliente()
+        escolherClientePedido()
+        cy.wait(2000)
     })
   
     context('Sem frete/ processo 9860 - caminho feliz', () => {
         
         it.skip('Pedido de venda: kit 1862 0 0', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoKitPrimeiro()
             
@@ -76,18 +70,6 @@ describe('Gerar pedido normal', () => {
     context('Com frete/processo 9860 - caminho feliz', () => {
         
         it('Pedido de venda: kit 1862 0 0', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoKitPrimeiro()
             

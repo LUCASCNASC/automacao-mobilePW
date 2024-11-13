@@ -14,23 +14,17 @@ describe('Gerar pedido de venda com desconto', () => {
         cy.clearAllSessionStorage();
         cy.login();
         titulopagina()
+        clicarBotaoTresPontos()
+        clicarExpandirClienteProcesso()
+        processoVendaPrincipal() 
+        clicarInformeCliente()
+        escolherClientePedido()
+        cy.wait(2000)
     })
 
     context('Sem frete/ processo 9860 - caminho feliz', () => {
 
         it('Pedido de venda: produto 1860 0 0 com desconto Sub (-) / R$', () => {
-            
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
     
             produtoNormalPrimeiro()
     
@@ -86,18 +80,6 @@ describe('Gerar pedido de venda com desconto', () => {
         })
 
         it('Pedido de venda: produto 1860 0 0 com desconto Sub (-) / % (Pocentagem)', () => {
-            
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoNormalPrimeiro()
     
@@ -155,18 +137,6 @@ describe('Gerar pedido de venda com desconto', () => {
         })
 
         it('Pedido de venda: produto 1860 0 0 com desconto Sub (-) / VALOR FIXO', () => {
-            
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoVendaPrincipal()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
     
             produtoNormalPrimeiro()
     

@@ -256,11 +256,11 @@ describe('Gerar pedido normal', () => {
         })
     })
 
-    afterEach(() => {
-        // RESUMO DO PEDIDO - ANTES DE FINALIZAR
-        botaoFinalizarPedido()
-        finalizandoPedido()
-        cy.wait(8000)
-        pedidoGerado()
-      });
+    // afterEach(() => {
+    //     // RESUMO DO PEDIDO - ANTES DE FINALIZAR
+    //     botaoFinalizarPedido()
+    //     finalizandoPedido()
+    //     cy.wait(8000)
+    //     pedidoGerado()
+    //   });
 })

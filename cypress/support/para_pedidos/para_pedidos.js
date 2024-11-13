@@ -174,7 +174,7 @@ export function escolherVoltagemProduto (selector) {
     cy.get('md-list.md-default-theme > .btn-rounded > .md-toolbar-tools > .flex')
         .scrollIntoView()
         .wait(200)
-        .should('exist')
+        .should('exist') 
         .and('be.visible')
         .and('have.text', 'Selecione a cor, a voltagem e o local de saldo')
 
@@ -202,7 +202,7 @@ export function escolherVoltagemProduto (selector) {
 export function botãoAdicionarProduto (selector) {
 
     //validando e clicando no botão ADICIONAR
-    cy.get('[style="padding: 0px 5px;"] > .md-primary')
+    cy.get('.ng-scope.flex-gt-sm-33 > .md-accent')
         .scrollIntoView()
         .wait(200)
         .should('exist')
@@ -277,31 +277,48 @@ export function okServicosVinculados (selector) {
 //Arrastar botão de Retirada / Entrega
 export function tirarEntrega (selector) {
 
-    //Botão como um todo
-    cy.get('[ng-show="itemAtual._permiteEntrega"] > .md-auto-horizontal-margin > .md-container > .md-bar')
+    //clicar no produto para abrir o tirar entrega
+    cy.get('.divClick')
         .scrollIntoView()
         .should('exist')
         .and('be.visible')
         .and('not.be.disabled')
+        .click({force:true})
 
-    //Botão Retirada / Entrega parte esquerda
-    cy.get('[ng-show="itemAtual._permiteEntrega"] > .md-auto-horizontal-margin > .md-container')
+    //validando texto "Entrega"
+    cy.get(':nth-child(1) > .label-custom')
+        .should('exist')
+        .and('be.visible')
+
+    //validando texto "Previsão de entrega"
+    cy.contains('label', 'Previsão de Entrega')
+        .should('exist')
+        .and('be.visible')
+
+    //validando ícone calendário
+    cy.get('.md-datepicker-calendar-icon.md-default-theme')
         .should('exist')
         .and('be.visible')
         .and('not.be.disabled')
 
-    //Botão Retirada / Entrega parte direita
-    cy.get('[ng-show="itemAtual._permiteEntrega"] > .md-auto-horizontal-margin > .md-container > .md-thumb-container > .md-thumb')
+    //validando campo da data
+    cy.get('input[aria-haspopup="dialog"]')
         .should('exist')
         .and('be.visible')
         .and('not.be.disabled')
 
-    //Botão Retirada / Entrega - texto Retirada / Entrega
-    cy.get('[ng-show="itemAtual._permiteEntrega"] > .md-auto-horizontal-margin > .md-label')
+    //validando botão seta para baixo do campo data
+    cy.get('button[aria-label="Open calendar"]')
         .should('exist')
         .and('be.visible')
         .and('not.be.disabled')
-        .and('have.text', ' Retirada / Entrega ')
+
+    //botão tirar entrega
+    cy.get(':nth-child(1) > .custom-md-switch > .md-container > .md-bar')
+        .scrollIntoView()
+        .should('exist')
+        .and('be.visible')
+        .and('not.be.disabled')
         .click({force:true})
 }
 
@@ -311,9 +328,11 @@ export function avancarParaParcelas (selector) {
     cy.wait(500)
 
     //validando e clicando no botão
-    cy.get('.flex-gt-sm-50 > .md-primary')
+    cy.get('.flex-100 > :nth-child(2) > .md-accent')
+        .scrollIntoView()
+        .wait(200)
         .should('exist')
-        //.and('be.visible')
+        .and('be.visible')
         .and('not.be.disabled')
         .and('contain','Avançar')
         .click({force:true})

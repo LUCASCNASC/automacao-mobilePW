@@ -13,23 +13,17 @@ describe('Gerar pedido com financeiro na baixa', () => {
         cy.clearAllSessionStorage();
         cy.login();
         titulopagina() 
+        clicarBotaoTresPontos()
+        clicarExpandirClienteProcesso()
+        processoFinanceiroBaixa() 
+        clicarInformeCliente()
+        escolherClientePedido()
+        cy.wait(2000)
     })
   
     context('Sem frete/ processo 9863 - caminho feliz', () => {
 
         it.skip('Pedido de venda: produto 1860 0 0', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoFinanceiroBaixa()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoNormalPrimeiro()
             
@@ -73,18 +67,6 @@ describe('Gerar pedido com financeiro na baixa', () => {
         })
 
         it.skip('Pedido de venda: produtos 1860 0 0 e 1870 0 0', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoFinanceiroBaixa()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoNormalPrimeiro()
             
@@ -151,18 +133,6 @@ describe('Gerar pedido com financeiro na baixa', () => {
     context('Com frete/ processo 9863 - caminho feliz', () => {
 
         it.skip('Pedido de venda: produto 1860 0 0', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoFinanceiroBaixa()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoNormalPrimeiro()
             
@@ -210,18 +180,6 @@ describe('Gerar pedido com financeiro na baixa', () => {
         })
 
         it.skip('Pedido de venda: produtos 1860 0 0 e 1870 0 0', () => {
-    
-            clicarBotaoTresPontos()
-
-            clicarExpandirClienteProcesso()
-
-            processoFinanceiroBaixa()
-            
-            clicarInformeCliente()
-
-            escolherClientePedido()
-
-            cy.wait(2000)
 
             produtoNormalPrimeiro()
             
@@ -287,11 +245,11 @@ describe('Gerar pedido com financeiro na baixa', () => {
         })
     })
 
-    // afterEach(() => {
-    //     // RESUMO DO PEDIDO - ANTES DE FINALIZAR
-    //     botaoFinalizarPedido()
-    //     finalizandoPedido()
-    //     cy.wait(9000)
-    //     pedidoGerado()
-    //   });
+    afterEach(() => {
+        // RESUMO DO PEDIDO - ANTES DE FINALIZAR
+        botaoFinalizarPedido()
+        finalizandoPedido()
+        cy.wait(9000)
+        pedidoGerado()
+      });
 })
